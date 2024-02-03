@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 
 type ApplicationInputProps = {
-    text: string;
+    field: string;
     label: string;
     onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const ApplicationInput: React.FC<ApplicationInputProps> = ({ text, label, onInputChange }) => {
+const ApplicationInput: React.FC<ApplicationInputProps> = ({ field, label, onInputChange }) => {
     return (
         <div className="application-input-item">
             <label>{label}</label>
-            <input type="text" name={label} onChange={onInputChange} />
+            <input type="text" name={field} onChange={onInputChange} />
         </div>
     )
 }
