@@ -1,0 +1,16 @@
+body, html {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.application-input-item label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.application-input-item input {
+    width: 100%;
+    padding: 0.5rem;
+}
