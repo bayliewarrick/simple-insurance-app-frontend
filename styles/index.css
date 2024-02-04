@@ -11,7 +11,7 @@ body, html {
     margin-bottom: 0.5rem;
 }
 
-.application-input-item input, .application-select-item select {
+.application-input-item input, .application-item select {
     width: 100%;
     padding: 0.5rem;
     margin-bottom: 0.5rem;

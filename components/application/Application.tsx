@@ -17,7 +17,7 @@ const Application: React.FC<ApplicationProps> = ({ email, cancel }) => {
   const sleep = (ms: number) =>
     new Promise((resolve) => setTimeout(resolve, ms));
 
-  const handleSubmit: () => void = async () => {
+  const handleSubmit: () => Promise<void> = async () => {
     setIsSubmittingApplication(true);
     setError(null);
     try {
@@ -34,7 +34,7 @@ const Application: React.FC<ApplicationProps> = ({ email, cancel }) => {
 
   // Submits the email to the server to either get the application or create a new one.
   useEffect(() => {
-    const handleSubmitEmail: () => void = async () => {
+    const handleSubmitEmail: () => Promise<void> = async () => {
       setIsSubmittingEmail(true);
       setError(null);
       try {

@@ -3,16 +3,16 @@ import ApplicationInput from "./ApplicationInput";
 import FormCheckbox from "./FormCheckbox";
 
 const applicationFields: { label: string; field: string }[] = [
-  { label: "First Name", field: "first-name" },
-  { label: "Last Name", field: "last-name" },
-  { label: "Phone Number", field: "phone-number" },
-  { label: "Company Name", field: "company-name" },
+  { label: "First Name", field: "firstname" },
+  { label: "Last Name", field: "lastname" },
+  { label: "Phone Number", field: "phonenumber" },
+  { label: "Company Name", field: "companyname" },
 ];
 
 const policyTypes: { label: string; field: string }[] = [
-  { label: "Auto Liability", field: "auto-liability" },
-  { label: "General Liability", field: "general-liability" },
-  { label: "Employee Liability", field: "employee-liability" },
+  { label: "Auto Liability", field: "autoliability" },
+  { label: "General Liability", field: "generalliability" },
+  { label: "Employee Liability", field: "employeeliability" },
 ];
 
 type ApplicationFormProps = {
