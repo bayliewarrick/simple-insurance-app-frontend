@@ -11,8 +11,23 @@ body, html {
     margin-bottom: 0.5rem;
 }
 
-.application-input-item input {
+.application-input-item input, .application-select-item select {
     width: 100%;
     padding: 0.5rem;
     margin-bottom: 0.5rem;
+}
+
+.form-button {
+    padding: 0.5rem 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    margin: 0.5rem 0.5rem;
+}
+
+.form-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
 }

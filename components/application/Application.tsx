@@ -1,18 +1,5 @@
 import React, { useState, useEffect } from "react";
-import ApplicationInput from "./ApplicationInput";
-
-const applicationFields: { label: string; field: string }[] = [
-  { label: "First Name", field: "first-name" },
-  { label: "Last Name", field: "last-name" },
-  { label: "Phone Number", field: "phone-number" },
-  { label: "Company Name", field: "company-name" },
-];
-
-const policyTypes: { label: string; field: string }[] = [
-  { label: "Auto Liability", field: "auto-liability" },
-  { label: "General Liability", field: "general-liability" },
-  { label: "Employee Liability", field: "employee-liability" },
-];
+import ApplicationForm from "./ApplicationForm";
 
 type ApplicationProps = {
   email: string;
@@ -20,44 +7,66 @@ type ApplicationProps = {
 };
 
 const Application: React.FC<ApplicationProps> = ({ email, cancel }) => {
-  const [formValues, setFormValues] = useState<{ [key: string]: string }>({email: email});
+  const [formValues, setFormValues] = useState<{ [key: string]: string | boolean }>({
+    email: email,
+  });
+  const [isSubmittingEmail, setIsSubmittingEmail] = useState<boolean>(true);
+  const [isSubmittingApplication, setIsSubmittingApplication] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormValues({ ...formValues, [e.target.name]: e.target.value });
+  const sleep = (ms: number) =>
+    new Promise((resolve) => setTimeout(resolve, ms));
+
+  const handleSubmit: () => void = async () => {
+    setIsSubmittingApplication(true);
+    setError(null);
+    try {
+      await sleep(2000);
+      console.log(formValues);
+      // Make your API call here
+      // After the API call is finished, set isSubmitting back to false
+    } catch (err) {
+      // setError(err.message);
+    } finally {
+      setIsSubmittingApplication(false);
+    }
   };
 
-  const onSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setFormValues({ ...formValues, [e.target.name]: e.target.value });
-  };
-
+  // Submits the email to the server to either get the application or create a new one.
   useEffect(() => {
-    console.log(formValues);
-  }, [formValues]);
+    const handleSubmitEmail: () => void = async () => {
+      setIsSubmittingEmail(true);
+      setError(null);
+      try {
+        await sleep(5000);
+        // Make your API call here
+        // After the API call is finished, set isLoading back to false
+      } catch (err) {
+        // setError(err.message);
+      } finally {
+        setIsSubmittingEmail(false);
+      }
+    };
+    handleSubmitEmail();
+  }, []);
 
   return (
     <div>
-      <h1>Get your FREE Insurance Quote!</h1>
-      <h2>Enter your information below:</h2>
-      <p>
-        <b>Email:</b> {email}
-      </p>
-      {applicationFields.map((item, index) => {
-        return (
-          <ApplicationInput
-            key={index}
-            label={item.label}
-            field={item.field}
-            onInputChange={onInputChange}
+      {isSubmittingEmail ? (
+        <div>
+          <h1>Please wait while we load your application...</h1>
+        </div>
+      ) : (
+        <div>
+          <ApplicationForm
+            email={email}
+            formValues={formValues}
+            setFormValues={setFormValues}
           />
-        );
-      })}
-      <h2>Select the type of insurance you are interested in:</h2>
-      <select name="insuranceType" onChange={onSelectChange}>
-        {policyTypes.map((type, index) => (
-          <option key={index} value={type.field}>{type.label}</option>
-        ))}
-      </select>
-      <button onClick={cancel}>Cancel</button>
+          <button className="form-button" onClick={cancel}>Cancel</button>
+          <button className="form-button" onClick={handleSubmit}>{isSubmittingApplication ? 'Loading... ' : 'Submit'}</button>
+        </div>
+      )}
     </div>
   );
 };
