@@ -7,13 +7,11 @@ type FormCheckboxProps = {
 };
 
 const FormCheckbox: React.FC<FormCheckboxProps> = ({
-  label,
   onCheckboxChange,
   options,
 }) => {
   return (
     <div className="application-select-item">
-      
       {options.map((option, index) => (
         <div key={index}>
           <input

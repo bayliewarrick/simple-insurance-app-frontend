@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import ApplicationInput from "./ApplicationInput";
 import FormCheckbox from "./FormCheckbox";
 
 const applicationFields: { label: string; field: string }[] = [
-  { label: "First Name", field: "firstname" },
-  { label: "Last Name", field: "lastname" },
-  { label: "Phone Number", field: "phonenumber" },
-  { label: "Company Name", field: "companyname" },
+  { label: "First Name", field: "first_name" },
+  { label: "Last Name", field: "last_name" },
+  { label: "Phone Number", field: "phone_number" },
+  { label: "Company Name", field: "company_name" },
 ];
 
 const policyTypes: { label: string; field: string }[] = [
-  { label: "Auto Liability", field: "autoliability" },
-  { label: "General Liability", field: "generalliability" },
-  { label: "Employee Liability", field: "employeeliability" },
+  { label: "Auto Liability", field: "primary_al" },
+  { label: "General Liability", field: "primary_gl" },
+  { label: "Employee Liability", field: "primary_el" },
 ];
 
 type ApplicationFormProps = {
